@@ -120,7 +120,6 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode();
 
-
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapBffManagementEndpoints();
@@ -134,6 +133,5 @@ app.UseEndpoints(endpoints =>
         .RequireAuthorization()    // no anonymous access
         .AsBffApiEndpoint();       // BFF pre/post processing
 });
-
 
 app.Run();
