@@ -21,7 +21,11 @@ public static class ServiceProviderExtensions
             };
         });
 
-        serviceCollection.AddHttpClient("Backend", client => client.BaseAddress = new Uri("https://localhost:7138"))
+      
+        serviceCollection.AddHttpClient("Backend", client =>
+        {
+            client.BaseAddress = new Uri("https://localhost:7138");
+        })
             .AddHttpMessageHandler<AntiforgeryHandler>();
         serviceCollection.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("Backend"));
 
