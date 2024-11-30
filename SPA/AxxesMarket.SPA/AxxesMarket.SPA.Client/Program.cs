@@ -10,12 +10,12 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 builder.Services.AddSharedServices();
 // authentication state and authorization
-//builder.Services.AddAuthorizationCore();
-//builder.Services.AddScoped<AuthenticationStateProvider, ClientAuthenticationStateProvider>();
+builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<AuthenticationStateProvider, ClientAuthenticationStateProvider>();
 
-//builder.Services.AddHttpClient("BFF", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
-//            .AddHttpMessageHandler<AntiforgeryHandler>();
-//builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BFF"));
+builder.Services.AddHttpClient("BFF", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+            .AddHttpMessageHandler<AntiforgeryHandler>();
+builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BFF"));
 
 var host = builder.Build();
 
