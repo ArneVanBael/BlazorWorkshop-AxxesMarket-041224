@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/API/AxxesMarket.Api/AxxesMarket.db-shm
+/API/AxxesMarket.Api/AxxesMarket.db-wal
+/API/AxxesMarket.Api/AxxesMarket.db
