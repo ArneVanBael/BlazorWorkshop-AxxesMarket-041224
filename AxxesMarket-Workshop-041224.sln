@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{D971E869-7D36-473D-8C7B-7085C9684DF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SPA", "SPA", "{B2B14CCB-D72F-49D4-80D7-3D18CEDF088E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxxesMarket.Api", "API\AxxesMarket.Api\AxxesMarket.Api.csproj", "{8144A719-3BE2-4377-AFA3-ABCEF3152E0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxxesMarket.Shared", "AxxesMarket.Shared\AxxesMarket.Shared.csproj", "{D42B51F1-1765-490E-80E9-78AE3C227685}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxxesMarket.SPA.Server", "SPA\AxxesMarket.SPA\AxxesMarket.SPA\AxxesMarket.SPA.Server.csproj", "{BE5066A4-A359-41E5-A03D-FF4B0C6747F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxxesMarket.SPA.Client", "SPA\AxxesMarket.SPA\AxxesMarket.SPA.Client\AxxesMarket.SPA.Client.csproj", "{8F49DE40-D90F-474A-8158-982EFD15EBD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8144A719-3BE2-4377-AFA3-ABCEF3152E0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8144A719-3BE2-4377-AFA3-ABCEF3152E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8144A719-3BE2-4377-AFA3-ABCEF3152E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8144A719-3BE2-4377-AFA3-ABCEF3152E0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D42B51F1-1765-490E-80E9-78AE3C227685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D42B51F1-1765-490E-80E9-78AE3C227685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D42B51F1-1765-490E-80E9-78AE3C227685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D42B51F1-1765-490E-80E9-78AE3C227685}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE5066A4-A359-41E5-A03D-FF4B0C6747F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE5066A4-A359-41E5-A03D-FF4B0C6747F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE5066A4-A359-41E5-A03D-FF4B0C6747F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE5066A4-A359-41E5-A03D-FF4B0C6747F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F49DE40-D90F-474A-8158-982EFD15EBD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F49DE40-D90F-474A-8158-982EFD15EBD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F49DE40-D90F-474A-8158-982EFD15EBD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F49DE40-D90F-474A-8158-982EFD15EBD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8144A719-3BE2-4377-AFA3-ABCEF3152E0B} = {D971E869-7D36-473D-8C7B-7085C9684DF5}
+		{BE5066A4-A359-41E5-A03D-FF4B0C6747F5} = {B2B14CCB-D72F-49D4-80D7-3D18CEDF088E}
+		{8F49DE40-D90F-474A-8158-982EFD15EBD4} = {B2B14CCB-D72F-49D4-80D7-3D18CEDF088E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {42DB9E6D-D44A-45DC-9550-132AFDD8F94F}
+	EndGlobalSection
+EndGlobal

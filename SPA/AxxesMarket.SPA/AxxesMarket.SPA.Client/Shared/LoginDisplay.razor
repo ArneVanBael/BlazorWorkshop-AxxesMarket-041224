@@ -1,0 +1,19 @@
+﻿@* <div class="user-info ml-3">
+    <AuthorizeView>
+        <Authorizing>
+            <text>...</text>
+        </Authorizing>
+        <Authorized>
+            <div>
+                <strong>@context.User.Identity.Name</strong>
+                <a class="clickable" href="@context.User.FindFirst("bff:logout_url")?.Value">SignOut</a>
+            </div>
+        </Authorized>
+        <NotAuthorized>
+            <a class="sign-in" href="bff/login">LogIn</a>
+        </NotAuthorized>
+    </AuthorizeView>
+</div> *@
+
+@code {
+}
