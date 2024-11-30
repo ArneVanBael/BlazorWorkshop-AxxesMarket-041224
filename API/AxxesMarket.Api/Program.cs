@@ -1,4 +1,7 @@
+using AxxesMarket.Api.Domain;
 using AxxesMarket.Api.Persistence;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +29,15 @@ using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().Creat
 {
     var context = scope.ServiceProvider.GetService<AxxesMarketContext>();
     context.Database.EnsureCreated();
+
+    var products = await context.Products.CountAsync();
+    if(products == 0)
+    {
+        // add test product
+        var product = Product.Create(new Guid(), "test product", "test beschrijving", "test detail beschrijving", new DateTime(2020,1,1), true, 50, null, "https://picsum.photos/1600/900", "Bob Smith");
+        context.Products.Add(product);
+        await context.SaveChangesAsync();
+    }
 }
 
 // Configure the HTTP request pipeline.

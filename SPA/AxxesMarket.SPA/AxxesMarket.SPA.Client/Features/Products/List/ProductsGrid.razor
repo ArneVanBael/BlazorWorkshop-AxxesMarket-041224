@@ -1,0 +1,34 @@
+﻿@using AxxesMarket.Shared.WebModels.Product
+@rendermode @(new InteractiveAutoRenderMode(prerender: false));
+@inject BlazorHttpClient httpClient
+
+<div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4" id="product-grid">
+    @foreach (var product in Products)
+    {
+        <div class="col mb-3">
+            <Card ButtonText="Details"
+                  Class="h-100 shadow border-0"
+                  Description=@product.Description
+                  Id=@product.Id
+                  ImageUrl=@product.ImageUrl
+                  Title=@product.Name
+                  Price=product.Price
+                  Sold=@product.SoldOn.HasValue />
+        </div>
+    }
+</div>
+
+@code {
+    private readonly List<ProductResponse> Products = new List<ProductResponse>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetProductsAsync();
+    }
+
+    private async Task GetProductsAsync()
+    {
+        var response = await httpClient.GetAsync<List<ProductResponse>>(ApiRoutes.GetProducts());
+        if (!response.Success) return;
+    }
+}
