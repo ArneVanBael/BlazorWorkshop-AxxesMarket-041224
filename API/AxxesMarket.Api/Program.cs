@@ -1,7 +1,8 @@
 using AxxesMarket.Api.Domain;
+using AxxesMarket.Api.Middleware;
 using AxxesMarket.Api.Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,22 @@ builder.Services.AddCors(opt =>
 
 // ADD AUTHENTICATION HERE
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+           .AddJwtBearer(options =>
+           {
+               // base-address of your identityserver
+               options.Authority = "https://demo.duendesoftware.com";
+
+               // audience is optional, make sure you read the following paragraphs
+               // to understand your options
+               options.TokenValidationParameters.ValidateAudience = false;
+               options.TokenValidationParameters.NameClaimType = "name";
+               options.TokenValidationParameters.RoleClaimType = "role";
+
+
+               // it's recommended to check the type header to avoid "JWT confusion" attacks
+               options.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
+           });
 var app = builder.Build();
 
 using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -50,8 +67,12 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // ADD AUTHENTICATION HERE
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors();
+
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+
 app.MapControllers();
 
 app.Run();
