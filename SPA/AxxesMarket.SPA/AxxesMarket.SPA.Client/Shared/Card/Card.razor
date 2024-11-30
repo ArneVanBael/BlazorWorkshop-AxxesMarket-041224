@@ -1,4 +1,6 @@
-﻿<div class="card @Class">
+﻿@inject Translator Translator
+
+<div class="card @Class">
     @if (!string.IsNullOrWhiteSpace(ImageUrl))
     {
         <img src=@ImageUrl class="card-img-top">
@@ -15,7 +17,7 @@
         }
 
         @if(Sold) {
-            <button class="btn-primary btn">Sold</button>
+            <button class="btn-primary btn">@Translator["Sold"]</button>
         } else {
             <button @onclick=@(async () => await OnButtonClick.InvokeAsync(Id)) class="btn-primary btn">@ButtonText</button>
         }

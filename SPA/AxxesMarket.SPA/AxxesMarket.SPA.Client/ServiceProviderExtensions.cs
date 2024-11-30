@@ -29,7 +29,7 @@ public static class ServiceProviderExtensions
             .AddHttpMessageHandler<AntiforgeryHandler>();
         serviceCollection.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("Backend"));
 
-        //serviceCollection.AddScoped<Translator>();
+        serviceCollection.AddScoped<Translator>();
         serviceCollection.AddScoped<BlazorHttpClient>();
         serviceCollection.AddLocalization(opt => opt.ResourcesPath = "Resources");
 
