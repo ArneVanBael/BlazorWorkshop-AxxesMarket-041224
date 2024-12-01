@@ -1,5 +1,6 @@
 ﻿@using AxxesMarket.SPA.Client.Features.Products.Store
 @using AxxesMarket.Shared.WebModels.Product
+@inject NavigationManager NavigationManager
 @rendermode @(new InteractiveAutoRenderMode(prerender: false));
 @inject BlazorHttpClient httpClient
 @inherits BlazorStateComponent
@@ -15,7 +16,8 @@
                   ImageUrl=@product.ImageUrl
                   Title=@product.Name
                   Price=product.Price
-                  Sold=@product.SoldOn.HasValue />
+                  Sold=@product.SoldOn.HasValue
+                  OnButtonClick=OnProductClick />
         </div>
     }
 </div>
@@ -42,5 +44,10 @@
     private async Task GetProductsByReduxAction()
     {
         if (_state.Products is null || !_state.Products.Any()) await Mediator.Send(new ProductsState.GetProductsAction());
+    }
+
+    private void OnProductClick(Guid id)
+    {
+        NavigationManager.NavigateTo($"/product/{id}/detail");
     }
 }

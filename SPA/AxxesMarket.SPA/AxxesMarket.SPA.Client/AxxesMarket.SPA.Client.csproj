@@ -26,6 +26,14 @@
 
     <ItemGroup>
         <None Include="compilerconfig.json" />
+        <None Include="Features\Products\Detail\ProductDetailDescription.razor" />
+        <None Include="Features\Products\Detail\ProductDetailPage.razor" />
+        <None Include="Features\Products\Detail\ProductDetailSpecifications.razor" />
+        <None Include="Features\Products\Detail\ProductPriceTag.razor" />
+        <None Include="Features\Profile\MyProducts\EditProductForm.razor" />
+        <None Include="Features\Profile\MyProducts\MyProducts.razor" />
+        <None Include="Features\Profile\MyProducts\MyProductsGrid.razor" />
+        <None Include="Features\Profile\MyProfilePage.razor" />
     </ItemGroup>
 
     <ItemGroup>

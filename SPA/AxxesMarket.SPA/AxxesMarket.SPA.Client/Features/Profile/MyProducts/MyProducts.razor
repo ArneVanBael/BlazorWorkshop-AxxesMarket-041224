@@ -1,0 +1,91 @@
+﻿@using AxxesMarket.SPA.Client.Features.Profile.Store
+@using AxxesMarket.Shared.WebModels.Product
+@inject Translator Translator
+@inject BlazorHttpClient httpClient
+@inherits BlazorStateComponent
+
+<div class=" row mt-5">
+    <button class="btn btn-primary" @onclick=CreateProduct>@Translator["NewProduct"]</button>
+</div>
+<div class="mt-3">
+    <MyProductsGrid OnEditProduct=OnEditProduct />
+</div>
+
+<Modal Visible=_createEditModalVisible OnVisibleChanged=OnVisibleChanged Title="@((_itemToEdit is null || _itemToEdit.Id is null) ? Translator["NewProduct"] : Translator["UpdateProduct"])">
+    <BodyContent>
+        <EditProductForm IsSaving=_isSaving OnCancel=OnCancel OnValidSubmit=OnValidSubmit Request=_itemToEdit />
+    </BodyContent>
+</Modal>
+
+@code {
+    private bool _createEditModalVisible;
+    private CreateEditProductRequest? _itemToEdit;
+    private bool _isSaving;
+    private bool _isLoading;
+
+    private void CreateProduct()
+    {
+        _itemToEdit = new CreateEditProductRequest();
+        _createEditModalVisible = true;
+    }
+
+    private async void OnEditProduct(Guid id)
+    {
+        // get product with id
+        _isLoading = true;
+        _createEditModalVisible = true;
+
+        var productResponse = await httpClient.GetAsync<ProductDetailResponse>(ApiRoutes.GetProduct(id));
+        if (!productResponse.Success)
+        {
+            _isLoading = false;
+            return;
+        }
+
+        _itemToEdit = new CreateEditProductRequest
+            {
+                Description = productResponse.Result.Description,
+                DetailedDescription = productResponse.Result.DetailedDescription,
+                HasWaranty = productResponse.Result.HasWaranty,
+                Name = productResponse.Result.Name,
+                Id = productResponse.Result.Id,
+                Price = productResponse.Result.Price,
+                PurchageDate = productResponse.Result.PurchageDate  
+            };
+        _isLoading = false;
+        StateHasChanged();
+    }
+
+    private void OnCancel()
+    {
+        _itemToEdit = null;
+        _createEditModalVisible = false;
+    }
+
+    private async void OnValidSubmit(CreateEditProductRequest request)
+    {
+        _isSaving = true;
+
+        if (request.Id is null)
+        {
+            await Mediator.Send(new ProfileState.CreateProductAction(request));
+        }
+        else
+        {
+            await Mediator.Send(new ProfileState.UpdateProductAction(request));
+        }
+
+        _createEditModalVisible = false;
+        _itemToEdit = null;
+        _isSaving = false;
+        StateHasChanged();
+    }
+
+    private void OnVisibleChanged(bool visible)
+    {
+        if (!visible)
+        {
+            OnCancel();
+        }
+    }
+}
