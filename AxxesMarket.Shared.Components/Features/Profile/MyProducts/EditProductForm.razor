@@ -1,0 +1,60 @@
+﻿@using AxxesMarket.Shared.WebModels.Product
+@inject Translator Translator
+
+<SpinnerOverlay IsLoading="@(IsLoadingItemToEdit || Request is null)">
+    <EditForm Model=@(Request ?? new()) OnValidSubmit=ValidSubmit>
+        <DataAnnotationsValidator />
+        <div class="form-group">
+            <label for="name">@Translator["Name"]</label>
+            <InputText class="form-control" id="name" @bind-Value=Request.Name />
+            <ValidationMessage For="@(() => Request.Name)" />
+        </div>
+        <div class="form-group">
+            <label for="description">@Translator["ShortDecription"]</label>
+            <InputTextArea class="form-control" id="desciption" @bind-Value=Request.Description />
+            <ValidationMessage For="@(() => Request.Description)" />
+        </div>
+        <div class="form-group">
+            <label for="detailed-description">@Translator["DetailDecription"]</label>
+            <InputTextArea class="form-control" id="detailed-description" @bind-Value=Request.DetailedDescription />
+            <ValidationMessage For="@(() => Request.DetailedDescription)" />
+        </div>
+        <div class="form-group">
+            <label for="purchaseDate">@Translator["PurchaseDate"]</label>
+            <InputDate class="form-control" id="purchaseDate" @bind-Value=Request.PurchageDate />
+            <ValidationMessage For="@(() => Request.PurchageDate)" />
+        </div>
+        <div class="form-check mb-2">
+            <InputCheckbox class="form-check-input" id="warranty" @bind-Value=Request.HasWaranty />
+            <label for="warranty" class="form-check-label">
+                @Translator["Warranty"]
+            </label>
+            <ValidationMessage For="@(() => Request.HasWaranty)" />
+        </div>
+        <div class="form-group">
+            <label for="price">@Translator["Price"]</label>
+            <InputNumber class="form-control" id="price" @bind-Value=Request.Price />
+            <ValidationMessage For="@(() => Request.Price)" />
+        </div>
+        <div class="mt-3">
+            <SpinnerOverlay IsLoading=IsSaving Class="m-2">
+                <button type="button" class="btn btn-secondary" @onclick="@(async () => await OnCancel.InvokeAsync())">@Translator["Cancel"]</button>
+                <button type="submit" class="btn btn-primary">@Translator["Save"]</button>
+            </SpinnerOverlay>
+        </div>
+    </EditForm>
+</SpinnerOverlay>
+
+@code {
+    [Parameter] public CreateEditProductRequest? Request { get; set; }
+    [Parameter] public EventCallback<CreateEditProductRequest> OnValidSubmit { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+    [Parameter] public bool IsSaving { get; set; }
+    [Parameter] public bool IsLoadingItemToEdit { get; set; }
+
+    private async Task ValidSubmit(EditContext context)
+    {
+        var request = (CreateEditProductRequest)context.Model;
+        await OnValidSubmit.InvokeAsync(Request);
+    }
+}

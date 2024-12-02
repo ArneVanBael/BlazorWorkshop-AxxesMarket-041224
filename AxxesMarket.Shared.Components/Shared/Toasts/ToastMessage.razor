@@ -1,0 +1,52 @@
+﻿@implements IDisposable
+
+<div class="toast " role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+        <svg class="bd-placeholder-img rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="@(Type == ToastMessageType.Error ? "red" : "green")"></rect></svg>
+        <strong class="mr-auto">@(Type == ToastMessageType.Error ? "Error" : "Success")</strong>
+        <small>@CreatedOn</small>
+        <button type="button" @onclick=RemoveToast class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body">
+        @Text
+    </div>
+</div>
+
+@code {
+    [Parameter] public Guid Id { get; set; }
+    [Parameter] public string? Text { get; set; }
+    [Parameter] public ToastMessageType Type { get; set; }
+    [Parameter] public string? CreatedOn { get; set; }
+    [Parameter] public EventCallback<Guid> OnRemoveToast { get; set; }
+
+    private System.Threading.Timer _timer;
+
+    protected override void OnInitialized()
+    {
+        Start();
+    }
+
+    private async Task RemoveToast() {
+        await OnRemoveToast.InvokeAsync(Id);
+    }
+
+    public void Start()
+    {
+        _timer = new System.Threading.Timer(async _ =>
+        {
+            await InvokeAsync(async () => await RemoveToast());
+        }, null, 5000, 5000);
+    }
+
+    public void Stop()
+    {
+        _timer?.Dispose();
+        _timer = null;
+    }
+
+    public void Dispose() {
+        _timer?.Dispose();
+    }
+}

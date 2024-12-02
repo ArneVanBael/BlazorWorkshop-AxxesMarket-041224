@@ -118,7 +118,8 @@ app.UseRequestLocalization(o =>
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
-    .AddInteractiveWebAssemblyRenderMode();
+    .AddInteractiveWebAssemblyRenderMode()
+    .AddAdditionalAssemblies(typeof(AxxesMarket.Shared.Components._Imports).Assembly);
 
 app.UseEndpoints(endpoints =>
 {

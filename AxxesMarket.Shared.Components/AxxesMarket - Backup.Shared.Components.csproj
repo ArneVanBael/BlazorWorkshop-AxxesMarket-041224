@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Remove="Features\Products\Detail\ProductDetailDescription.razor" />
+        <Content Remove="Features\Products\Detail\ProductDetailPage.razor" />
+        <Content Remove="Features\Products\Detail\ProductDetailSpecifications.razor" />
+        <Content Remove="Features\Products\Detail\ProductPriceTag.razor" />
+        <Content Remove="Features\Profile\MyProducts\EditProductForm.razor" />
+        <Content Remove="Features\Profile\MyProducts\MyProducts.razor" />
+        <Content Remove="Features\Profile\MyProducts\MyProductsGrid.razor" />
+        <Content Remove="Features\Profile\MyProfilePage.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="Features\Products\Detail\ProductDetailDescription.razor" />
+        <None Include="Features\Products\Detail\ProductDetailPage.razor" />
+        <None Include="Features\Products\Detail\ProductDetailSpecifications.razor" />
+        <None Include="Features\Products\Detail\ProductPriceTag.razor" />
+        <None Include="Features\Profile\MyProducts\EditProductForm.razor" />
+        <None Include="Features\Profile\MyProducts\MyProducts.razor" />
+        <None Include="Features\Profile\MyProducts\MyProductsGrid.razor" />
+        <None Include="Features\Profile\MyProfilePage.razor" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0" />
+        <PackageReference Include="Blazor-State" Version="10.0.0" />
+
+    </ItemGroup>
+
+</Project>

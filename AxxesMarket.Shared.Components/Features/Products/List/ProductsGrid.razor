@@ -1,0 +1,64 @@
+﻿@using AxxesMarket.Shared.Components.Features.Products.Store
+@using AxxesMarket.Shared.WebModels.Product
+@inject NavigationManager NavigationManager
+@rendermode InteractiveRenderSettings.InteractiveAutoNoPreRender
+@inject BlazorHttpClient httpClient
+
+<div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4" id="product-grid">
+    @foreach (var product in Products)
+    {
+        <div class="col mb-3">
+            <Card ButtonText="Details"
+                  Class="h-100 shadow border-0"
+                  Description=@product.Description
+                  Id=@product.Id
+                  ImageUrl=@product.ImageUrl
+                  Title=@product.Name
+                  Price=product.Price
+                  Sold=@product.SoldOn.HasValue
+                  OnButtonClick=OnProductClick />
+        </div>
+    }
+</div>
+
+@code {
+    private List<ProductResponse> Products = new List<ProductResponse>();
+    //private ProductsState _state => GetState<ProductsState>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetProductsAsync();
+    }
+
+    private async Task GetProductsAsync()
+    {
+        // var response = await httpClient.GetAsync<List<ProductResponse>>(ApiRoutes.GetProducts());
+
+        // if (!response.Success) return;
+
+        // Products = response.Result;
+
+        Products = new List<ProductResponse>
+        {
+            new ProductResponse
+            {
+                Description = "test",
+                Id = new Guid(),
+                ImageUrl = "https://picsum.photos/1600/900",
+                Name = "Test",
+                Price = 100
+            }
+        };
+    }
+
+    // private async Task GetProductsByReduxAction()
+    // {
+    //     if (_state.Products is null || !_state.Products.Any()) await Mediator.Send(new ProductsState.GetProductsAction());
+    // }
+
+    private void OnProductClick(Guid id)
+    {
+        NavigationManager.NavigateTo($"/product/{id}/detail");
+    }
+}

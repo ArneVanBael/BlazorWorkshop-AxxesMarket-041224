@@ -1,0 +1,28 @@
+﻿@inject Translator Translator
+@page "/profile"
+@rendermode InteractiveRenderSettings.InteractiveAutoNoPreRender
+@attribute [Authorize]
+
+<PageTitle>profile</PageTitle>
+
+<div class="container">
+    <div class="row mt-5 mb-2 justify-content-center">
+        <div class="">
+            <Avatar Height="100px" Width="100px" />
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <TabControl>
+        <TabPage Text=@Translator["Products"]>
+            <AxxesMarket.Shared.Components.Features.Profile.MyProducts.MyProducts />
+        </TabPage>
+        <TabPage Text=@Translator["Settings"]>
+        </TabPage>
+    </TabControl>
+</div>
+
+@code {
+
+}

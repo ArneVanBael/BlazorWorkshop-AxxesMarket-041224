@@ -1,0 +1,41 @@
+﻿@using AxxesMarket.SPA.Client.Features.Profile.Store
+@inject NavigationManager NavigationManager
+@inject Translator Translator
+@inherits BlazorStateComponent
+
+<div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4" id="product-grid">
+    @foreach (var product in _state.MyProducts)
+    {
+        <div class="col mb-3">
+            <Card ButtonText=@Translator["Edit"]
+                                                 Class="h-100 shadow border-0"
+                                                 Description="@product.Description"
+                                                 Id=@product.Id
+                                                 ImageUrl=@product.ImageUrl
+                                                 Title=@product.Name
+                                                 Price=@product.Price
+                                                 Sold=product.SoldOn.HasValue
+                                                 OnButtonClick=OnProductClick />
+        </div>
+    }
+</div>
+
+@code {
+    // load products
+    private ProfileState _state => GetState<ProfileState>();
+    [Parameter] public EventCallback<Guid> OnEditProduct { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (_state.MyProducts is null || !_state.MyProducts.Any())
+        {
+            await Mediator.Send(new ProfileState.GetMyProductsAction());
+            StateHasChanged();
+        }
+    }
+
+    private async Task OnProductClick(Guid id)
+    {
+        await OnEditProduct.InvokeAsync(id);
+    }
+}

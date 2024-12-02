@@ -1,0 +1,23 @@
+﻿@inject Translator Translator
+
+<div id="product-specifications" class="p-4">
+    <div class="specification mb-2">
+        <label class="font-weight-bold mb-0">Waranty</label>
+        <div class="text-primary">
+            @if(HasWaranty) {
+                <span>@Translator["Yes"]</span>
+            } else {
+                <span>@Translator["No"]</span>
+            }
+        </div>
+    </div>
+    <div class="specification">
+        <label class="font-weight-bold mb-0">@Translator["PurchaseDate"]</label>
+        <div class="text-primary">@PurchaseDate.ToShortDateString()</div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public bool HasWaranty { get; set; }
+    [Parameter] public DateTime PurchaseDate { get; set; }
+}

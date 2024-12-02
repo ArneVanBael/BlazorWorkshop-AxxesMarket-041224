@@ -1,0 +1,23 @@
+﻿@using AxxesMarket.Shared.Components.Store
+@inherits BlazorStateComponent
+
+<div id="toast-message-container">
+    @foreach (var message in _state.ToastMessages)
+    {
+        <ToastMessage 
+            CreatedOn=@message.CreatedOn.ToShortTimeString()
+            Id=message.Id
+            Text=@message.Text
+            Type=message.Type
+            OnRemoveToast=OnRemoveToast>
+        </ToastMessage>
+    }
+</div>
+
+@code {
+    private ApplicationState _state => GetState<ApplicationState>();
+
+    private async Task OnRemoveToast(Guid id) {
+        await Mediator.Send(new ApplicationState.RemoveToastAction(id));
+    }
+}
