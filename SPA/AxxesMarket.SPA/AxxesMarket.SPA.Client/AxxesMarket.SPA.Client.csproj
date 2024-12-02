@@ -37,6 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\..\AxxesMarket.Shared.Components\AxxesMarket.Shared.Components.csproj" />
         <ProjectReference Include="..\..\..\AxxesMarket.Shared\AxxesMarket.Shared.csproj" />
     </ItemGroup>
 

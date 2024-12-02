@@ -1,0 +1,90 @@
+﻿@inject Translator Translator
+@inject BlazorHttpClient HttpClient
+
+@page "/product/{Id}/detail"
+@    using AxxesMarket.Shared.WebModels
+@    using AxxesMarket.Shared.WebModels.Product
+@rendermode @(new InteractiveAutoRenderMode(prerender: false))
+
+<SpinnerOverlay Class="mt-5" IsLoading=_isloading>
+    @if (_productDetail is not null)
+    {
+        <div class="container mt-5">
+            <div class="row my-3">
+                <div class="col-2 shadow rounded bg-white">
+                    <ProductPriceTag Price=_productDetail.Price />
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-12 col-md-7 shadow rounded bg-white">
+                    <ProductDetailDescription DetailDescription=@_productDetail.DetailedDescription />
+                </div>
+                <div class="col-12 offset-md-1 col-md-3 shadow rounded bg-white">
+                    <ProductDetailSpecifications HasWaranty=_productDetail.HasWaranty PurchaseDate=_productDetail.PurchageDate />
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-2 offset-10">
+                    @if(_productDetail.SoldOn.HasValue) {
+                        <button class="btn btn-primary px-4 py-2" disabled=true>@Translator["Sold"]</button>
+                    } else {
+                        <SpinnerOverlay IsLoading=_isBuying>
+                            <button class="btn btn-primary px-4 py-2" @onclick=BuyProduct>@Translator["Buy"]</button>
+                        </SpinnerOverlay>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</SpinnerOverlay>
+
+@if(_redirectToLogin) {
+    <RedirectToLogin></RedirectToLogin>
+}
+
+@code {
+    [Parameter] public string Id { get; set; }
+
+    [CascadingParameter] public Task<AuthenticationState> AuthenticationStateTask { get; set; }
+
+    private ProductDetailResponse? _productDetail;
+    private bool _isloading;
+    private bool _isBuying;
+
+    private bool _redirectToLogin;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProductDetailAsync();
+    }
+
+    private async Task LoadProductDetailAsync()
+    {
+        _isloading = true;
+
+        var response = await HttpClient.GetAsync<ProductDetailResponse>(ApiRoutes.GetProduct(Guid.Parse(Id)));
+        _isloading = false;
+
+        if (!response.Success) return;
+
+        _productDetail = response.Result;
+    }
+
+    private async Task BuyProduct() {
+        // when not authenticated redirect to login
+        var auth = await AuthenticationStateTask;
+
+        if(!auth.User.Identity.IsAuthenticated) {
+            _redirectToLogin = true;
+        } else  {
+            _isBuying = true;
+            var response = await HttpClient.PutAsync<object, Guid>(ApiRoutes.BuyProduct(Guid.Parse(Id)), new { }, successMessage: Translator["BuyProductSuccess"]);
+
+            _isBuying = false;
+
+            if (!response.Success) return;
+
+            await LoadProductDetailAsync();
+        }
+    }
+}

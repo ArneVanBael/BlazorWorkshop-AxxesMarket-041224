@@ -1,0 +1,39 @@
+﻿@using AxxesMarket.Shared.Components.Shared.CulturePicker
+@rendermode InteractiveRenderSettings.InteractiveAuto
+@inject Translator Translator
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmenucontent" aria-controls="navbarmenucontent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand-mobile d-md-none" href="#">
+        <AxxesLogoSvg />
+    </a>
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarmenucontent">
+            <a class="navbar-brand d-none d-md-inline" href="#">
+                <AxxesLogoSvg />
+            </a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/" ActiveClass="active" Match="NavLinkMatch.All">
+                        @Translator["Products"]
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/profile" ActiveClass="active" Match="NavLinkMatch.All">
+                        @Translator["Profile"]
+                    </NavLink>
+                </li>
+            </ul>
+            <CulturePicker />
+            <LoginDisplay />
+        </div>
+
+    </div>
+</nav>
+@code {
+    protected override void OnInitialized()
+    {
+    }
+}

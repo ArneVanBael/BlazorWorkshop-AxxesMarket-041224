@@ -7,13 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{D971E869-7D3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SPA", "SPA", "{B2B14CCB-D72F-49D4-80D7-3D18CEDF088E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxxesMarket.Api", "API\AxxesMarket.Api\AxxesMarket.Api.csproj", "{8144A719-3BE2-4377-AFA3-ABCEF3152E0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxxesMarket.Api", "API\AxxesMarket.Api\AxxesMarket.Api.csproj", "{8144A719-3BE2-4377-AFA3-ABCEF3152E0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxxesMarket.Shared", "AxxesMarket.Shared\AxxesMarket.Shared.csproj", "{D42B51F1-1765-490E-80E9-78AE3C227685}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxxesMarket.Shared", "AxxesMarket.Shared\AxxesMarket.Shared.csproj", "{D42B51F1-1765-490E-80E9-78AE3C227685}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxxesMarket.SPA.Server", "SPA\AxxesMarket.SPA\AxxesMarket.SPA\AxxesMarket.SPA.Server.csproj", "{BE5066A4-A359-41E5-A03D-FF4B0C6747F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxxesMarket.SPA.Server", "SPA\AxxesMarket.SPA\AxxesMarket.SPA\AxxesMarket.SPA.Server.csproj", "{BE5066A4-A359-41E5-A03D-FF4B0C6747F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxxesMarket.SPA.Client", "SPA\AxxesMarket.SPA\AxxesMarket.SPA.Client\AxxesMarket.SPA.Client.csproj", "{8F49DE40-D90F-474A-8158-982EFD15EBD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxxesMarket.SPA.Client", "SPA\AxxesMarket.SPA\AxxesMarket.SPA.Client\AxxesMarket.SPA.Client.csproj", "{8F49DE40-D90F-474A-8158-982EFD15EBD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MAUI", "MAUI", "{1AEDCB9F-BB5A-4D39-B1A1-263F1C7B2D77}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxxesMarket.App", "APP\AxxesMarket.App\AxxesMarket.App.csproj", "{F8993489-536B-4A27-8E4B-F0CDD800E743}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxxesMarket.Shared.Components", "AxxesMarket.Shared.Components\AxxesMarket.Shared.Components.csproj", "{2CA4F839-84D4-4F4F-A605-4EC78548BAAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +43,16 @@ Global
 		{8F49DE40-D90F-474A-8158-982EFD15EBD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F49DE40-D90F-474A-8158-982EFD15EBD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F49DE40-D90F-474A-8158-982EFD15EBD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8993489-536B-4A27-8E4B-F0CDD800E743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8993489-536B-4A27-8E4B-F0CDD800E743}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8993489-536B-4A27-8E4B-F0CDD800E743}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F8993489-536B-4A27-8E4B-F0CDD800E743}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8993489-536B-4A27-8E4B-F0CDD800E743}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8993489-536B-4A27-8E4B-F0CDD800E743}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2CA4F839-84D4-4F4F-A605-4EC78548BAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CA4F839-84D4-4F4F-A605-4EC78548BAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CA4F839-84D4-4F4F-A605-4EC78548BAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CA4F839-84D4-4F4F-A605-4EC78548BAAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +61,7 @@ Global
 		{8144A719-3BE2-4377-AFA3-ABCEF3152E0B} = {D971E869-7D36-473D-8C7B-7085C9684DF5}
 		{BE5066A4-A359-41E5-A03D-FF4B0C6747F5} = {B2B14CCB-D72F-49D4-80D7-3D18CEDF088E}
 		{8F49DE40-D90F-474A-8158-982EFD15EBD4} = {B2B14CCB-D72F-49D4-80D7-3D18CEDF088E}
+		{F8993489-536B-4A27-8E4B-F0CDD800E743} = {1AEDCB9F-BB5A-4D39-B1A1-263F1C7B2D77}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42DB9E6D-D44A-45DC-9550-132AFDD8F94F}

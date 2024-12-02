@@ -1,0 +1,12 @@
+﻿<Router AppAssembly="@typeof(AxxesMarket.Shared.Components.Shared.Avatar.Avatar).Assembly" AdditionalAssemblies="new[] { typeof(AxxesMarket.Shared.Components.Shared.Avatar.Avatar).Assembly }">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(AxxesMarket.Shared.Components.Shared.MainLayout)" />
+    </Found>
+</Router>
+
+<!-- this hides the loading indicator when the page app is loading -->
+<style>
+    #initial-login-container {
+        display: none;
+    }
+</style>

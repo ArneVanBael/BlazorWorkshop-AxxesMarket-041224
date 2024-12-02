@@ -111,7 +111,8 @@ app.UseAuthorization();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
-    .AddInteractiveWebAssemblyRenderMode();
+    .AddInteractiveWebAssemblyRenderMode()
+    .AddAdditionalAssemblies(typeof(AxxesMarket.Shared.Components._Imports).Assembly);
 
 
 app.UseEndpoints(endpoints =>
