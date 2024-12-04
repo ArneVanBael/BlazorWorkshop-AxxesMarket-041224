@@ -14,7 +14,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 // ADD BFF AUTHENTICATION HERE
-builder.Services.AddBff()
+builder.Services.AddBff(o => o.RevokeRefreshTokenOnLogout = false)
     .AddServerSideSessions()
     .AddRemoteApis();
 
