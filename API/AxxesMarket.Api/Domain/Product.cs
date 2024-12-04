@@ -25,7 +25,7 @@ public class Product
         HasWaranty = product.HasWaranty;
     }
 
-    public static Product Create(Guid? id, string name, string description, string detailedDescription, DateTime purchageDate, bool hasWaranty, double price, DateTime? soldOn, string imageUrl)
+    public static Product Create(Guid? id, string name, string description, string detailedDescription, DateTime purchageDate, bool hasWaranty, double price, DateTime? soldOn, string imageUrl, string? owner = null)
     {
         var product = new Product
         {
@@ -40,14 +40,20 @@ public class Product
             ImageUrl = imageUrl,
         };
 
-        // get logged in user to set as owner
-        if(Thread.CurrentPrincipal.Identity.IsAuthenticated)
+        if(string.IsNullOrWhiteSpace(owner))
         {
-            product.Owner = Thread.CurrentPrincipal.Identity.Name;
-        }
-        else
+            // get logged in user to set as owner
+            if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
+            {
+                product.Owner = Thread.CurrentPrincipal.Identity.Name;
+            }
+            else
+            {
+                product.Owner = "John Doe";
+            }
+        } else
         {
-            product.Owner = "John Doe";
+            product.Owner = owner;
         }
 
         return product;
