@@ -1,8 +1,8 @@
 ﻿@inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
 <div>
-    <span @onclick=@(() => SetCulture("nl-BE")) class="mr-2 clickable @(_culture == "nl-BE" ? "font-weight-bold text-primary" : "")">NL</span>
-    <span @onclick=@(() => SetCulture("en-US")) class="clickable @(_culture == "en-US" ? "font-weight-bold text-primary" : "") " >EN</span>
+    <span @onclick=@(() => SetCulture("nl-BE")) class="mr-2 clickable @(_culture == "c=nl-BE|uic=nl-BE" ? "font-weight-bold text-primary" : "")">NL</span>
+    <span @onclick=@(() => SetCulture("en-US")) class="clickable @(_culture == "c=en-US|uic=en-US" ? "font-weight-bold text-primary" : "") ">EN</span>
 </div>
 
 @code {
@@ -18,7 +18,7 @@
     }
 
     private async Task SetCulture(string culture) {
-        await JSRuntime.InvokeVoidAsync("setCookie", ".AspNetCore.Culture", culture, 100);
+        await JSRuntime.InvokeVoidAsync("setCookie", ".AspNetCore.Culture", $"c={culture}|uic={culture}", 100);
         NavigationManager.NavigateTo(NavigationManager.Uri, true); // refresh the page
     }
 }

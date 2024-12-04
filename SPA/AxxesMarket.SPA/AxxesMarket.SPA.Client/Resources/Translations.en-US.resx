@@ -180,6 +180,9 @@
   <data name="Sold" xml:space="preserve">
     <value>Sold</value>
   </data>
+  <data name="TestTitle" xml:space="preserve">
+    <value>Welcome to our store!</value>
+  </data>
   <data name="UpdateProduct" xml:space="preserve">
     <value>Update product</value>
   </data>

@@ -25,7 +25,8 @@ var result = await jsInterop.InvokeAsync<string>("getCookie", ".AspNetCore.Cultu
 CultureInfo culture;
 if (!string.IsNullOrWhiteSpace(result))
 {
-    culture = new CultureInfo(result);
+    var items = result.Split('|');
+    culture = new CultureInfo(items[0].Split("=")[1]);
 }
 else
 {

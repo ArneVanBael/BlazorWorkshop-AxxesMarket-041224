@@ -1,14 +1,16 @@
 ﻿@using AxxesMarket.SPA.Client.Features.Products.Store
 @using AxxesMarket.Shared.WebModels.Product
-@rendermode @(new InteractiveAutoRenderMode(prerender: false));
+@* @rendermode @(new InteractiveAutoRenderMode(prerender: false));
+ *@
 @inject BlazorHttpClient httpClient
 @inherits BlazorStateComponent
+@inject Translator Translator
 
 <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4" id="product-grid">
     @foreach (var product in _state.Products)
     {
         <div class="col mb-3">
-            <Card ButtonText="Details"
+            <Card ButtonText="@Translator["Details"]"
                   Class="h-100 shadow border-0"
                   Description=@product.Description
                   Id=@product.Id

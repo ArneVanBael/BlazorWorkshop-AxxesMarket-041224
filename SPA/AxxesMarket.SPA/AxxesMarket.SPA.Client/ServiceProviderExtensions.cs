@@ -31,7 +31,10 @@ public static class ServiceProviderExtensions
 
         serviceCollection.AddScoped<Translator>();
         serviceCollection.AddScoped<BlazorHttpClient>();
-        serviceCollection.AddLocalization(opt => opt.ResourcesPath = "Resources");
+        serviceCollection.AddLocalization(opt =>
+        {
+            opt.ResourcesPath = "Resources";
+        });
 
         return serviceCollection;
     }

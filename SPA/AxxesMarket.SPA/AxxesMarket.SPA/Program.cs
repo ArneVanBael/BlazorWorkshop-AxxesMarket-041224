@@ -2,6 +2,7 @@ using AxxesMarket.SPA.Client;
 using AxxesMarket.SPA.Server;
 using Duende.Bff.Yarp;
 using Microsoft.AspNetCore.Components.Authorization;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +54,12 @@ app.UseAntiforgery();
 //app.UseBff();
 //app.UseAuthorization();
 
+app.UseRequestLocalization(o =>
+{
+    o.SupportedCultures = new CultureInfo[] { new CultureInfo("nl-BE"), new CultureInfo("en-US") };
+    o.SupportedUICultures = new CultureInfo[] { new CultureInfo("nl-BE"), new CultureInfo("en-US") };
+});
+
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode();
@@ -71,5 +78,6 @@ app.MapRazorComponents<App>()
 //        .RequireAuthorization()    // no anonymous access
 //        .AsBffApiEndpoint();       // BFF pre/post processing
 //});
+
 
 app.Run();
